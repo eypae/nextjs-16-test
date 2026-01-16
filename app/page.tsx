@@ -1,7 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ExploreBtn from "../components/ExploreBtn";
-import EventCard from "../components/EventCard";
-import { events } from "../lib/constants";
+import EventList from "../components/EventList";
 
 const Page = () => {
   return (
@@ -15,13 +14,9 @@ const Page = () => {
       <ExploreBtn />
       <div className={"mt-20 space-y-7"}>
         <h3>Featured Events</h3>
-        <ul className={"events list-none"}>
-          {events.map((event) => (
-            <li key={event.title}>
-              <EventCard {...event} />
-            </li>
-          ))}
-        </ul>
+        <Suspense fallback={<p>Loading events...</p>}>
+          <EventList />
+        </Suspense>
       </div>
     </section>
   );
