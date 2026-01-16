@@ -2,6 +2,7 @@ import React from "react";
 import EventCard from "./EventCard";
 import { IEvent } from "@/database";
 import { cacheLife } from "next/cache";
+import { connection } from "next/server";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -9,6 +10,7 @@ const EventList = async () => {
   // "use cache";
   // cacheLife("hours");
   try {
+    await connection();
     const response = await fetch(`${BASE_URL}/api/events`, {
       cache: "no-store",
     });
