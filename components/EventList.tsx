@@ -6,8 +6,8 @@ import { cacheLife } from "next/cache";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const EventList = async () => {
-  // "use cache";
-  // cacheLife("hours");
+  "use cache";
+  cacheLife("hours");
   try {
     const response = await fetch(`${BASE_URL}/api/events`, {
       next: { revalidate: 60 },
